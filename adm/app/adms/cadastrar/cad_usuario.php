@@ -1,2 +1,8 @@
 <?php
-echo 'Cadastrar Usuário';
+if (!isset($seg)){
+    exit;
+}
+
+var_dump(limparUrl($url));
+echo '<br>';
+var_dump($url);
