@@ -1,0 +1,81 @@
+
+.nav-bar-principal{
+    font-size: large;
+    background-color: black!important;
+}
+.nav-bar-principal:hover{
+    color: orangered;
+}
+.menu-header{
+    color: white !important;
+}
+
+.sidebar{
+    background-color: orangered;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: calc(100vh - 56px);
+    transition: all 0.3s;
+    font-size: large;
+    text-align: left;
+}
+.sidebar ul li a{
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: white;
+}
+.sidebar ul li a:hover, .sidebar ul .active a{
+    background-color: #787878;
+}
+
+.sidebar.toggled{
+    margin-left: -250px;
+}
+
+ 
+ .sidebar ul ul a{
+     padding-left: 2.5rem;
+ }
+
+@media (max-width: 768px){
+    .sidebar{
+        margin-left: -250px;
+    }
+    .sidebar.toggled{
+        margin-left: 0px;
+    }
+}
+
+.sidebar [data-toggle="collapse"]{
+    position: relative;
+}
+.sidebar [data-toggle="collapse"]:before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 2rem;
+    content: "\f0d7";
+}
+
+.sidebar [aria-expanded="true"]{
+    background-color: #192219;
+    color: white;
+}
+.sidebar [aria-expanded="true"]:before{
+    content: "\f0d8";
+     
+}
+.content{
+    width: 100%;
+}
+.titulo{
+    font-size: 2.0rem !important;
+}
+.card{
+    padding: 1em 1em 1em 1em !important;
+    margin:  30px 30px 30px 30px !important;
+    border-radius: 15px 50px;
+    border-style:none;
+    
+}

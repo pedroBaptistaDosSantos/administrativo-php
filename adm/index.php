@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 $seg = true;
-
+include_once './config/config.php';
 include_once './config/conexao.php';
 include_once './lib/lib_valida.php';
 $url = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_STRING);
@@ -16,23 +16,17 @@ $resultado_pg = mysqli_query($conn, $result_pg);
 ?>
 <!DOCTYPE html5>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <title>title</title>
-    </head>
-    <body>
-        <?php
-        if (($resultado_pg) AND ($resultado_pg->num_rows != 0)) {
-            $row_pg = mysqli_fetch_assoc($resultado_pg);                            
-            $file = "app/" . $row_pg['tp_pagina'] . "/" . $row_pg['endereco'] . '.php';
-            if (file_exists($file)) {
-                include $file;
-            } else {
-                include 'app/adms/visualizar/home.php';
-            }
+    <?php
+    if (($resultado_pg) AND ($resultado_pg->num_rows != 0)) {
+        $row_pg = mysqli_fetch_assoc($resultado_pg);
+        $file = "app/" . $row_pg['tp_pagina'] . "/" . $row_pg['endereco'] . '.php';
+        if (file_exists($file)) {
+            include $file;
         } else {
             include 'app/adms/visualizar/home.php';
         }
-        ?>
-    </body>
+    } else {
+        include 'app/adms/visualizar/home.php';
+    }
+    ?>
 </html>
