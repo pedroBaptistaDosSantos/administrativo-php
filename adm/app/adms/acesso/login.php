@@ -15,7 +15,7 @@ include_once 'app/adms/include/head_login.php';
         }
         ?>
         <label for="inputEmail" class="sr-only">Endereço de email</label>
-        <input name="usuario" type="email" id="inputEmail" class="form-control" placeholder="Seu email" required autofocus>
+        <input name="usuario" type="text" id="inputEmail" class="form-control" placeholder="Seu usuario ou email" required autofocus>
         <label  for="inputPassword" class="sr-only">Senha</label>
         <input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
         <div class="checkbox mb-3">
