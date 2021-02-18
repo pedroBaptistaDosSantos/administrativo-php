@@ -13,13 +13,8 @@ include_once 'app/adms/include/head.php';
     <div class="d-flex">
         <?php
         include_once 'app/adms/include/menu.php';
-        ?>    
-        </<div>
-            <?php
-            echo "Bem vindo a home <br>";
-            echo " <a href='" . pg . "/acesso/sair'> Sair </a> <br>";
-
-           
+        
+            echo "Listar Páginas<br>";
 
             include_once 'app/adms/include/rodape_lib.php';
             ?>
