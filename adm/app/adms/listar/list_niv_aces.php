@@ -13,11 +13,10 @@ include_once 'app/adms/include/head.php';
     <div class="d-flex">
         <?php
         include_once 'app/adms/include/menu.php';
-        
-            echo "Listar Nivel de acesso<br>";
 
-            include_once 'app/adms/include/rodape_lib.php';
-            ?>
+        echo "Listar Nivel de acesso<br>";
+        include_once 'app/adms/include/rodape_lib.php';
+        ?>
 
-            </body>
+</body>
 
