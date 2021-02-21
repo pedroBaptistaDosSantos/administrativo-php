@@ -21,13 +21,16 @@ include_once 'app/adms/include/head.php';
                     <div class="mr-auto p2">
                         <h2 class="display-4 titulo">Listar Níveis de Acesso</h2>
                     </div>    
-                    <a href="cadastrar.html">
-                        <div class="p-2">
-                            <button class="btn btn-outline-success btn-sm">
-                                Cadastrar
-                            </button>
-                        </div>
-                    </a>    
+
+                    <div class="p-2">
+                        <?php
+                        $btn_cad = carregar_btn('cadastrar/cad_niv_aces', $conn);
+                        if ($btn_cad) {
+                            echo "<a href='" . pg . "/cadastrar/cad_niv_aces'class='btn btn-outline-success btn-sm'>Cadastrar </a>   ";
+                        }
+                        ?>
+                    </div>
+
                 </div> 
                 <div class="alert alert-success" role="alert">
                     Usuário apagado com sucesso
@@ -38,7 +41,7 @@ include_once 'app/adms/include/head.php';
                 <?php
                 //receber numero da pagina
                 $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
-                $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+                $pagina = (empty($pagina_atual) ? $pagina_atual = 1 : $pagina_atual);
 
                 //setar quantidade de itens por pagina
                 $qnt_result_pg = 1;
@@ -69,11 +72,28 @@ include_once 'app/adms/include/head.php';
                                         <th><?php echo $row_niv_aces['id']; ?></th>
                                         <td><?php echo $row_niv_aces['nome']; ?></td>
                                         <td class="d-none d-sm-table-cell"><?php echo $row_niv_aces['ordem']; ?></td>
-                                        <td>
+                                        <td class="text-center">
                                             <span class="d-none d-md-block">
-                                                <a href="visualizar.html" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                                <a href="editar.html" class="btn btn-outline-warning btn-sm">Editar</a>
-                                                <a href="apagar.html" class="btn btn-outline-danger btn-sm"  data-toggle="modal" data-target="#modalApagar">Apagar</a>
+                                                <?php
+                                                $btn_vis = carregar_btn('visualizar/vis_niv_aces', $conn);
+                                                if ($btn_vis) {
+                                                    echo "<a href='" . pg . "/visualizar/vis_niv_aces'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
+                                                }
+
+                                                $btn_edit = carregar_btn('editar/edit_niv_aces', $conn);
+                                                if ($btn_edit) {
+                                                    echo "<a href='" . pg . "/editar/edit_niv_aces'class='btn btn-outline-warning btn-sm'>Editar</a>   ";
+                                                }
+
+                                                $btn_apagar = carregar_btn('processa/apagar_niv_aces', $conn);
+                                                if ($btn_apagar) {
+                                                    echo "<a href='" . pg . "/processa/apagar_niv_aces'class='btn btn-outline-danger btn-sm'>Apagar</a>   ";
+                                                }
+                                                ?>
+
+
+
+
                                             </span>    
                                             <div class="dropdown d-block d-md-none">
                                                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,16 +132,20 @@ include_once 'app/adms/include/head.php';
                         echo "<a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=1' tabindex='-1'>Primeira</a>";
                         echo "</li>";
 
+
                         for ($pag_ant = $pagina_atual - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
+
                             if ($pag_ant >= 1) {
                                 echo "<li class='page-item'><a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=$pag_ant'>$pag_ant</a></li>";
                             }
                         }
 
+                        
+                            echo "<li class='page-item active'>";
+                            echo "<a class='page-link' href='#'>$pagina_atual</a>";
+                            echo "</li>";
+                        
 
-                        echo "<li class='page-item active'>";
-                        echo "<a class='page-link' href='#'>$pagina_atual</a>";
-                        echo "</li>";
 
 
                         for ($pag_dep = $pagina_atual + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {

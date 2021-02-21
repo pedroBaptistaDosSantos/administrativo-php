@@ -4,5 +4,5 @@ if (!isset($seg)){
 }
 
 var_dump(limparUrl($url));
-echo 'Cadastrar Usuario<br>';
+echo 'Apagar Nivel de Acesso<br>';
 var_dump($url);
