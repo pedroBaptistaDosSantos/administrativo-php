@@ -41,7 +41,7 @@ include_once 'app/adms/include/head.php';
                 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
                 //setar quantidade de itens por pagina
-                $qnt_result_pg = 10;
+                $qnt_result_pg = 1;
 
                 //Calcular inicio da visualização
                 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
@@ -93,26 +93,50 @@ include_once 'app/adms/include/head.php';
 
                             </tbody>
                         </table>
-                        <nav aria-label="paginacao">
-                            <ul class="pagination pagination-sm justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Primeira</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Ultima</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <?php
+                        $result_pg = "SELECT COUNT(id) AS num_result FROM adms_niveis_acessos WHERE ordem >= '" . $_SESSION['ordem'] . "'";
+                        $resultado_pg = mysqli_query($conn, $result_pg);
+
+                        $row_pg = mysqli_fetch_assoc($resultado_pg);
+
+                        //echo $row_pg['num_result'];
+
+                        $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
+
+                        //Limitar link antes e depois
+
+                        $max_links = 2;
+                        echo " <nav aria-label='paginacao'>";
+                        echo "<ul class='pagination pagination-sm justify-content-center'>";
+                        echo "<li class='page-item'>";
+                        echo "<a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=1' tabindex='-1'>Primeira</a>";
+                        echo "</li>";
+
+                        for ($pag_ant = $pagina_atual - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
+                            if ($pag_ant >= 1) {
+                                echo "<li class='page-item'><a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=$pag_ant'>$pag_ant</a></li>";
+                            }
+                        }
+
+
+                        echo "<li class='page-item active'>";
+                        echo "<a class='page-link' href='#'>$pagina_atual</a>";
+                        echo "</li>";
+
+
+                        for ($pag_dep = $pagina_atual + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
+                            if ($pag_dep <= $quantidade_pg) {
+                                echo "<li class='page-item'><a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=$pag_dep'>$pag_dep</a></li>";
+                            }
+                        }
+
+                        echo "<li class='page-item'>";
+                        echo "<a class='page-link' href='" . pg . "/listar/list_niv_aces?pagina=$quantidade_pg'>Ultima</a>";
+                        echo "</li>";
+                        echo "</ul>";
+                        echo "</nav>";
+                        ?> 
                     </div>   
-
-
                     <?php
                 } else {
                     ?>
