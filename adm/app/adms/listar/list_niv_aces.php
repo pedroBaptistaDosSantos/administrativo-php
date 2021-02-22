@@ -44,7 +44,7 @@ include_once 'app/adms/include/head.php';
                 $pagina = (empty($pagina_atual) ? $pagina_atual = 1 : $pagina_atual);
 
                 //setar quantidade de itens por pagina
-                $qnt_result_pg = 1;
+                $qnt_result_pg = 40;
 
                 //Calcular inicio da visualização
                 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
@@ -77,12 +77,12 @@ include_once 'app/adms/include/head.php';
                                                 <?php
                                                 $btn_vis = carregar_btn('visualizar/vis_niv_aces', $conn);
                                                 if ($btn_vis) {
-                                                    echo "<a href='" . pg . "/visualizar/vis_niv_aces'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
+                                                    echo "<a href='" . pg . "/visualizar/vis_niv_aces?id=".$row_niv_aces['id']."'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
                                                 }
 
                                                 $btn_edit = carregar_btn('editar/edit_niv_aces', $conn);
                                                 if ($btn_edit) {
-                                                    echo "<a href='" . pg . "/editar/edit_niv_aces'class='btn btn-outline-warning btn-sm'>Editar</a>   ";
+                                                    echo "<a href='" . pg . "/editar/edit_niv_aces?id=".$row_niv_aces['id']."'class='btn btn-outline-warning btn-sm'>Editar</a>   ";
                                                 }
 
                                                 $btn_apagar = carregar_btn('processa/apagar_niv_aces', $conn);
@@ -100,9 +100,14 @@ include_once 'app/adms/include/head.php';
                                                     Ações
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                                    <a class="dropdown-item" href="visualizar.html">Visualizar</a>
-                                                    <a class="dropdown-item" href="editar.html">editar</a>
-                                                    <a class="dropdown-item" href="apagar.html" data-toggle="modal" data-target="#modalApagar">Apagar</a>
+                                                    <?php
+                                                    if($btn_vis)echo "<a class='dropdown-item' href='" . pg . "/visualizar/vis_niv_aces?id=".$row_niv_aces['id']."'>Visualizar</a>";
+                                                    if($btn_edit)echo "<a class='dropdown-item' href='" . pg . "/editar/edit_niv_aces?id=".$row_niv_aces['id']."'>editar</a>";
+                                                    if($btn_apagar)echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces' data-toggle='modal' data-target='#modalApagar'>Apagar</a>";
+                                                    ?>
+                                                    
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </td>
@@ -166,7 +171,6 @@ include_once 'app/adms/include/head.php';
                     ?>
                     <div class="alert alert-danger" role="alert">
                         Nenhum registro encontrado!
-
                     </div> 
                     <?php
                 }
