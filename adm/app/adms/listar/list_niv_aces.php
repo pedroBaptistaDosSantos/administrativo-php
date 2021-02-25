@@ -32,13 +32,14 @@ include_once 'app/adms/include/head.php';
                     </div>
 
                 </div> 
-                <div class="alert alert-success" role="alert">
-                    Usuário apagado com sucesso
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> 
+                
                 <?php
+                if(isset($_SESSION['msg'])){
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                }
+              
+                
                 //receber numero da pagina
                 $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
                 $pagina = (empty($pagina_atual) ? $pagina_atual = 1 : $pagina_atual);
