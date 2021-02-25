@@ -31,7 +31,13 @@ include_once 'app/adms/include/head.php';
                         ?>                     
                     </div>
                 </div> <hr>
-                <form class="text-left" method="POST" action="<?php echo pg;?>/processa/proc_cad_niv_aces">
+                <?php
+                if (isset($_SESSION['msg'])) {
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                }
+                ?>
+                <form class="text-left" method="POST" action="<?php echo pg; ?>/processa/proc_cad_niv_aces">
                     <div class="form-group">
                         <label> <span class="text-danger">*</span> Nome</label>
                         <input name="nome" type="text" class="form-control" placeholder=" do nível de acesso">
