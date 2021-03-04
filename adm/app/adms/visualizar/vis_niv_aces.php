@@ -16,9 +16,14 @@ include_once 'app/adms/include/head.php';
         include_once 'app/adms/include/menu.php';
 
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        
+        if ($_SESSION['adms_niveis_acesso_id'] == 1) {
 
-        $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE ordem >='" . $_SESSION['ordem'] . "' 
+        $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE id=$id ORDER BY ordem ASC LIMIT 1";
+        }else{
+            $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE ordem >'" . $_SESSION['ordem'] . "' 
          AND id=$id ORDER BY ordem ASC LIMIT 1";
+        }
         $resultado_niv_aces = mysqli_query($conn, $result_niv_aces);
         $row_niv_aces = mysqli_fetch_assoc($resultado_niv_aces);
         ?>

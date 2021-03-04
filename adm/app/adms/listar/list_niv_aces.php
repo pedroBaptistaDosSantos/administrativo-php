@@ -32,14 +32,14 @@ include_once 'app/adms/include/head.php';
                     </div>
 
                 </div> 
-                
+
                 <?php
-                if(isset($_SESSION['msg'])){
+                if (isset($_SESSION['msg'])) {
                     echo $_SESSION['msg'];
                     unset($_SESSION['msg']);
                 }
-              
-                
+
+
                 //receber numero da pagina
                 $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
                 $pagina = (empty($pagina_atual) ? $pagina_atual = 1 : $pagina_atual);
@@ -49,9 +49,11 @@ include_once 'app/adms/include/head.php';
 
                 //Calcular inicio da visualização
                 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
-
-                $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE ordem >= '" . $_SESSION['ordem'] . "' ORDER BY ordem ASC LIMIT $inicio, $qnt_result_pg";
-
+                if ($_SESSION['adms_niveis_acesso_id'] == 1) {
+                    $result_niv_aces = "SELECT * FROM adms_niveis_acessos ORDER BY ordem ASC LIMIT $inicio, $qnt_result_pg";
+                } else {
+                    $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE ordem > '" . $_SESSION['ordem'] . "' ORDER BY ordem ASC LIMIT $inicio, $qnt_result_pg";
+                }
                 $resultado_niv_aces = mysqli_query($conn, $result_niv_aces);
                 if (($resultado_niv_aces) AND ($resultado_niv_aces->num_rows != 0)) {
                     ?>
@@ -78,12 +80,12 @@ include_once 'app/adms/include/head.php';
                                                 <?php
                                                 $btn_vis = carregar_btn('visualizar/vis_niv_aces', $conn);
                                                 if ($btn_vis) {
-                                                    echo "<a href='" . pg . "/visualizar/vis_niv_aces?id=".$row_niv_aces['id']."'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
+                                                    echo "<a href='" . pg . "/visualizar/vis_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
                                                 }
 
                                                 $btn_edit = carregar_btn('editar/edit_niv_aces', $conn);
                                                 if ($btn_edit) {
-                                                    echo "<a href='" . pg . "/editar/edit_niv_aces?id=".$row_niv_aces['id']."'class='btn btn-outline-warning btn-sm'>Editar</a>   ";
+                                                    echo "<a href='" . pg . "/editar/edit_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-warning btn-sm'>Editar</a>   ";
                                                 }
 
                                                 $btn_apagar = carregar_btn('processa/apagar_niv_aces', $conn);
@@ -102,20 +104,23 @@ include_once 'app/adms/include/head.php';
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                                     <?php
-                                                    if($btn_vis)echo "<a class='dropdown-item' href='" . pg . "/visualizar/vis_niv_aces?id=".$row_niv_aces['id']."'>Visualizar</a>";
-                                                    if($btn_edit)echo "<a class='dropdown-item' href='" . pg . "/editar/edit_niv_aces?id=".$row_niv_aces['id']."'>editar</a>";
-                                                    if($btn_apagar)echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces' data-toggle='modal' data-target='#modalApagar'>Apagar</a>";
+                                                    if ($btn_vis)
+                                                        echo "<a class='dropdown-item' href='" . pg . "/visualizar/vis_niv_aces?id=" . $row_niv_aces['id'] . "'>Visualizar</a>";
+                                                    if ($btn_edit)
+                                                        echo "<a class='dropdown-item' href='" . pg . "/editar/edit_niv_aces?id=" . $row_niv_aces['id'] . "'>editar</a>";
+                                                    if ($btn_apagar)
+                                                        echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces' data-toggle='modal' data-target='#modalApagar'>Apagar</a>";
                                                     ?>
-                                                    
-                                                    
-                                                    
+
+
+
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php
-                                }
-                                ?>
+        <?php
+    }
+    ?>
 
                             </tbody>
                         </table>
@@ -146,11 +151,11 @@ include_once 'app/adms/include/head.php';
                             }
                         }
 
-                        
-                            echo "<li class='page-item active'>";
-                            echo "<a class='page-link' href='#'>$pagina_atual</a>";
-                            echo "</li>";
-                        
+
+                        echo "<li class='page-item active'>";
+                        echo "<a class='page-link' href='#'>$pagina_atual</a>";
+                        echo "</li>";
+
 
 
 
@@ -167,21 +172,21 @@ include_once 'app/adms/include/head.php';
                         echo "</nav>";
                         ?> 
                     </div>   
-                    <?php
-                } else {
-                    ?>
+    <?php
+} else {
+    ?>
                     <div class="alert alert-danger" role="alert">
                         Nenhum registro encontrado!
                     </div> 
-                    <?php
-                }
-                ?>
+    <?php
+}
+?>
 
             </div>    
         </div>
-        <?php
-        include_once 'app/adms/include/rodape_lib.php';
-        ?>
+<?php
+include_once 'app/adms/include/rodape_lib.php';
+?>
 
     </div>
 </body>
