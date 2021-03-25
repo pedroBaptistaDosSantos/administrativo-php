@@ -57,7 +57,7 @@ if ($id) {
                             unset($_SESSION['msg']);
                         }
                         ?>
-                        <form class="text-left" method="POST" action="<?php echo pg; ?>/processa/proc_cad_niv_aces">
+                        <form class="text-left" method="POST" action="<?php echo pg; ?>/processa/proc_edit_niv_aces">
                             <input type="hidden" name="id" value="<?php if(isset($row_nivac_ed['nome']))echo $row_nivac_ed['id'];?>">
                             <div class="form-group">
                                 <label> <span class="text-danger">*</span> Nome</label>
