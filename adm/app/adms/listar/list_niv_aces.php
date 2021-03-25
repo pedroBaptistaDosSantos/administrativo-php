@@ -90,7 +90,7 @@ include_once 'app/adms/include/head.php';
 
                                                 $btn_apagar = carregar_btn('processa/apagar_niv_aces', $conn);
                                                 if ($btn_apagar) {
-                                                    echo "<a href='" . pg . "/processa/apagar_niv_aces'class='btn btn-outline-danger btn-sm'>Apagar</a>   ";
+                                                    echo "<a href='" . pg . "/processa/apagar_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-danger btn-sm'>Apagar</a>   ";
                                                 }
                                                 ?>
 

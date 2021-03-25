@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/administrativo-php/adm/app/adms/cadastrar/cad_niv_aces.php</file>
-            <file>file:/opt/lampp/htdocs/administrativo-php/adm/app/adms/processa/proc_cad_niv_aces.php</file>
-            <file>file:/opt/lampp/htdocs/administrativo-php/adm/lib/lib_vazio.php</file>
-            <file>file:/opt/lampp/htdocs/administrativo-php/adm/app/adms/listar/list_niv_aces.php</file>
+            <file>file:/opt/lampp/htdocs/administrativo-php/adm/app/adms/processa/proc_edit_niv_aces.php</file>
+            <file>file:/opt/lampp/htdocs/administrativo-php/adm/app/adms/editar/edit_niv_aces.php</file>
         </group>
     </open-files>
 </project-private>
