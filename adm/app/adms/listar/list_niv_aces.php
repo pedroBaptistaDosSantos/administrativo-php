@@ -109,7 +109,7 @@ include_once 'app/adms/include/head.php';
                                                     if ($btn_edit)
                                                         echo "<a class='dropdown-item' href='" . pg . "/editar/edit_niv_aces?id=" . $row_niv_aces['id'] . "'>editar</a>";
                                                     if ($btn_apagar)
-                                                        echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces' data-toggle='modal' data-target='#modalApagar'>Apagar</a>";
+                                                        echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces?id=" . $row_niv_aces['id'] . "'>Apagar</a>";
                                                     ?>
 
 
@@ -118,9 +118,9 @@ include_once 'app/adms/include/head.php';
                                             </div>
                                         </td>
                                     </tr>
-        <?php
-    }
-    ?>
+                                    <?php
+                                }
+                                ?>
 
                             </tbody>
                         </table>
@@ -172,21 +172,21 @@ include_once 'app/adms/include/head.php';
                         echo "</nav>";
                         ?> 
                     </div>   
-    <?php
-} else {
-    ?>
+                    <?php
+                } else {
+                    ?>
                     <div class="alert alert-danger" role="alert">
                         Nenhum registro encontrado!
                     </div> 
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
 
             </div>    
         </div>
-<?php
-include_once 'app/adms/include/rodape_lib.php';
-?>
+        <?php
+        include_once 'app/adms/include/rodape_lib.php';
+        ?>
 
     </div>
 </body>

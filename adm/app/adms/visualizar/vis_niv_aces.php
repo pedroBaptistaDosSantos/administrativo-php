@@ -49,7 +49,7 @@ include_once 'app/adms/include/head.php';
 
                         $btn_apagar = carregar_btn('processa/apagar_niv_aces', $conn);
                         if ($btn_apagar) {
-                            echo "<a href='" . pg . "/processa/apagar_niv_aces'class='btn btn-outline-danger btn-sm'>Apagar</a>   ";
+                            echo "<a href='" . pg . "/processa/apagar_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-danger btn-sm'>Apagar</a>   ";
                         }
                         ?>
 
@@ -68,7 +68,7 @@ include_once 'app/adms/include/head.php';
                                 if ($btn_edit)
                                     echo "<a class='dropdown-item' href='" . pg . "/editar/edit_niv_aces?id=" . $row_niv_aces['id'] . "'>editar</a>";
                                 if ($btn_apagar)
-                                    echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces' data-toggle='modal' data-target='#modalApagar'>Apagar</a>";
+                                    echo "<a class='dropdown-item' href='" . pg . "/processa/apagar_niv_aces?id=" . $row_niv_aces['id'] . "'>Apagar</a>";
                                 ?>
                             </div>
                         </div>                       
