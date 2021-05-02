@@ -46,7 +46,7 @@ if (!empty($id)) {
                 header("Location: " . $url_destino);
             }
         } else {
-            $_SESSION['msg'] = "<div class=\"alert alert-danger\" role=\"alert\"> Nível de acesso não encontrado</div>";
+            $_SESSION['msg'] = "<div class=\"alert alert-danger\" role=\"alert\"> Nível de acesso sem permissao</div>";
             $url_destino = pg . '/listar/list_niv_aces';
             header("Location: " . $url_destino);
         }
