@@ -48,8 +48,10 @@ include_once 'app/adms/include/head.php';
 
                 //carregar tabela de acordo com as permissões
                 if ($_SESSION['adms_niveis_acesso_id'] == 1) {
-                    $result_pg = "SELECT pg.id, pg.nome_pagina, pg.endereco, pg.tp_pagina  
+                    $result_pg = "SELECT pg.id, pg.nome_pagina, pg.endereco,
+                    tpg.tipo    
                     FROM adms_paginas pg
+                    INNER JOIN adms_tps_pgs tpg ON tpg.id=pg.adms_tps_pg_id
                     ORDER BY id ASC LIMIT $inicio, $qnt_result_pg";
                 } else {
                     /* $result_niv_aces = "SELECT * FROM adms_niveis_acessos WHERE ordem > '" . $_SESSION['ordem'] . "' ORDER BY ordem ASC LIMIT $inicio, $qnt_result_pg"; */
@@ -76,7 +78,7 @@ include_once 'app/adms/include/head.php';
                                         <th><?php echo $row_pg['id']; ?></th>
                                         <td><?php echo $row_pg['nome_pagina']; ?></td>
                                         <td class="d-none d-sm-table-cell"><?php echo $row_pg['endereco']; ?></td>
-                                        <td class="d-none d-sm-table-cell"><?php echo $row_pg['tp_pagina']; ?></td>
+                                        <td class="d-none d-sm-table-cell"><?php echo $row_pg['tipo']; ?></td>
                                         <td class="text-center">
                                             <span class="d-none d-md-block">
                                                 <?php
