@@ -69,6 +69,7 @@ include_once 'app/adms/include/head.php';
                             </thead>
                             <tbody>
                                 <?php
+                                $qnt_linhas_exe = 1;
                                 while ($row_niv_aces = mysqli_fetch_assoc($resultado_niv_aces)) {
                                     ?>
                                     <tr>
@@ -78,6 +79,18 @@ include_once 'app/adms/include/head.php';
                                         <td class="text-center">
                                             <span class="d-none d-md-block">
                                                 <?php
+                                                $btn_ordem_nivac = carregar_btn('processa/proc_ordem_niv_aces', $conn);
+                                                if ($qnt_linhas_exe == 1) {
+                                                    if ($btn_ordem_nivac) {
+                                                        echo "<button class='btn btn-outline-secondary btn-sm disabled'><i class='fas fa-angle-double-up'></i> </button>   ";
+                                                    }
+                                                } else {
+                                                    if ($btn_ordem_nivac) {
+                                                        echo "<a href='" . pg . "/processa/proc_ordem_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-secondary btn-sm'><i class='fas fa-angle-double-up'></i> </a>   ";
+                                                    }
+                                                }
+                                                $qnt_linhas_exe++;
+
                                                 $btn_vis = carregar_btn('visualizar/vis_niv_aces', $conn);
                                                 if ($btn_vis) {
                                                     echo "<a href='" . pg . "/visualizar/vis_niv_aces?id=" . $row_niv_aces['id'] . "'class='btn btn-outline-primary btn-sm'>Visualizar </a>   ";
